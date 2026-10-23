@@ -4,6 +4,7 @@ from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from mediapipe.tasks.python.vision import drawing_utils, drawing_styles
 from pathlib import Path
+from .GestureRecognizer import GestureRecognizer
 
 PROJECT_ROOT = Path(__file__).resolve().parents[0]
 model_path = PROJECT_ROOT / "hand_landmarker.task"
@@ -18,13 +19,14 @@ options = vision.HandLandmarkerOptions(
 
 detector = vision.HandLandmarker.create_from_options(options)
 
-#  Conexões e estilos oficiais do MediaPipe Tasks
 connections = vision.HandLandmarksConnections.HAND_CONNECTIONS
 
 landmark_style = drawing_styles.get_default_hand_landmarks_style()
 connection_style = drawing_styles.get_default_hand_connections_style()
 
 video = cv2.VideoCapture(0)
+
+reconhecedor = GestureRecognizer()
 
 while video.isOpened():
     sucess, frame = video.read()
@@ -38,8 +40,14 @@ while video.isOpened():
 
     result = detector.detect(mp_image)
 
-    if result.hand_landmarks:
-        for hand_landmarks in result.hand_landmarks:
+    if result.hand_landmarks and result.handedness:
+        for hand_landmarks, hand in zip(result.hand_landmarks, result.handedness):
+
+            gesto = reconhecedor.recognizer(hand_landmarks, hand[0].category_name)
+
+            if gesto:
+                cv2.putText(frame_rgb, gesto, (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2,)
+            
             drawing_utils.draw_landmarks(
                 image=frame_rgb,
                 landmark_list=hand_landmarks,
