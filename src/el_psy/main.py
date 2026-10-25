@@ -5,7 +5,6 @@ from mediapipe.tasks.python import vision
 from mediapipe.tasks.python.vision import drawing_utils, drawing_styles
 from pathlib import Path
 from .GestureRecognizer import GestureRecognizer
-from .Comands import Comands
 
 PROJECT_ROOT = Path(__file__).resolve().parents[0]
 model_path = PROJECT_ROOT / "hand_landmarker.task"
