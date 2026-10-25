@@ -33,8 +33,6 @@ class GestureRecognizer:
         self.palma = self.__calcular_distancia(self.landmark["pulso"], self.landmark["base_medio"])
 
     def recognizer_gesto(self, hand):
-        if self.palma == 0:
-            return None
 
         # Distância da pinça
         razao_indicador = self.__calcular_distancia(self.landmark["ponta_polegar"], self.landmark["ponta_indicador"]) / self.palma
@@ -63,5 +61,8 @@ class GestureRecognizer:
     def recognizer(self, landmarks, hand):
         self.__pontos_dedos(landmarks)
         self.__tamanho_palma()
+
+        if self.palma == 0:
+            return None
 
         return self.recognizer_gesto(hand)
