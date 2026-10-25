@@ -9,7 +9,6 @@ class GestureRecognizer:
             data = json.load(arquivo)
         self.Gestures = list(data.keys())
         self.razao_min_pinca = 0.35
-        self.razao_min_fechado = 0.3
         self.executor = Comands()
 
     def __calcular_distancia(self, p1, p2):
