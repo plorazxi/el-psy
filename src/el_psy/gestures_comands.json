@@ -1,6 +1,6 @@
 {
-    "RIGHT_pinca_indicador": "pyautogui.click(interval=0.1)",
-    "RIGHT_pinca_medio": "pyautogui.click(button='right', interval=0.1)",
+    "RIGHT_pinca_indicador": "mouse.click(button='left')",
+    "RIGHT_pinca_medio": "mouse.click(button='right')",
     "LEFT_pinca_indicador": 2,
     "LEFT_pinca_medio": 3
 }

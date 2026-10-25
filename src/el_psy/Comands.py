@@ -1,4 +1,4 @@
-import pyautogui
+import mouse
 import json
 from pathlib import Path
 
