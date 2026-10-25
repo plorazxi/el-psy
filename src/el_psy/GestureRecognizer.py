@@ -17,12 +17,16 @@ class GestureRecognizer:
     def __pontos_dedos(self, landmarks):
         self.landmark = {
             "pulso": landmarks[0], 
-            "base_medio": landmarks[9], 
             "ponta_polegar": landmarks[4],
+            "base_polegar": landmarks[1],
             "ponta_indicador": landmarks[8],
+            "base_indicador": landmarks[5],
             "ponta_medio": landmarks[12], 
-            "ponta_anelar": landmarks[16], 
-            "ponta_mindinho": landmarks[20]
+            "base_medio": landmarks[9], 
+            "ponta_anelar": landmarks[16],
+            "base_anelar": landmarks[13], 
+            "ponta_mindinho": landmarks[20],
+            "base_mindinho": landmarks[17]
         }
 
     def __tamanho_palma(self):
