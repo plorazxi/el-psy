@@ -1,6 +1,7 @@
 import mouse
 import json
 from pathlib import Path
+import time
 
 class Comands:
     def __init__(self):
@@ -11,3 +12,4 @@ class Comands:
         if not gesto:
             return
         eval(self.Comands[gesto])
+        time.sleep(0.2)
